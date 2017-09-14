@@ -26,7 +26,7 @@ class Mesa(Resource):
 
         data = Mesa.parser.parse_args()
 
-        mesa = MesaModel(**data)
+        mesa = MesaModel(data['number'], data['nmb_places'], data['status'])
         try:
             mesa.save_to_db()
         except:
