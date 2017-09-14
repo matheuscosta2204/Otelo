@@ -20,17 +20,17 @@ class Mesa(Resource):
         help="This field cannot be blank"
     )
 
-#    def post(self, number, nmb_places, status):
-#        if MesaModel.find_by_number(number):
-#            return {'message': "A table with name '{}' already exists.".format(number)}, 400
-#
-#        mesa = MesaModel(number, nmb_places, status)
-#        try:
-#            mesa.save_to_db()
-#        except:
-#            return {"message": "An error occurred creating the table."}, 500
-#
-#        return mesa.json(), 201
+    def post(self, number, nmb_places, status):
+        if MesaModel.find_by_number(number):
+            return {'message': "A table with name '{}' already exists.".format(number)}, 400
+
+        mesa = MesaModel(number, nmb_places, status)
+        try:
+            mesa.save_to_db()
+        except:
+            return {"message": "An error occurred creating the table."}, 500
+
+        return mesa.json(), 201
 
 #class MesaCountDisponible(Resource):
     #def get(self):
