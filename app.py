@@ -5,6 +5,7 @@ from flask_restful import Api
 from flask_jwt import JWT
 
 from resources.user import UserRegister
+from resources.mesa import Mesa, MesaCountDisponible
 from security import authenticate, identity
 
 app = Flask(__name__)
@@ -16,6 +17,8 @@ api = Api(app)
 jwt = JWT(app, authenticate, identity) # /auth
 
 api.add_resource(UserRegister, '/register')
+api.add_resource(Mesa, '/mesa')
+api.add_resource(MesaCountDisponible, '/mesas_disponiveis')
 
 if __name__ == '__main__':
     from db import db
