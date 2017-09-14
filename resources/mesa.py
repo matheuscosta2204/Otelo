@@ -24,9 +24,9 @@ class Mesa(Resource):
         if MesaModel.find_by_number(number):
             return {'message': "A table with name '{}' already exists.".format(number)}, 400
 
-        data = Mesa.parser.parse_args()
+        #data = Mesa.parser.parse_args()
 
-        mesa = MesaModel(data['number'], data['nmb_places'], data['status'])
+        mesa = MesaModel('1', '2', 'livre')
         try:
             mesa.save_to_db()
         except:
