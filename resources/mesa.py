@@ -1,5 +1,5 @@
 from flask_restful import Resource, reqparse
-#from models.mesa import MesaModel
+from models.mesa import MesaModel
 
 class Mesa(Resource):
 
