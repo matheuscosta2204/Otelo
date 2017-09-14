@@ -21,8 +21,8 @@ class Mesa(Resource):
 
     def post(self, number, nmb_places, status):
         if MesaModel.find_by_number(number):
-            return {'message': "A store with name '{}' already exists.".format(number)}, 400
-        
+            return {'message': "A table with name '{}' already exists.".format(number)}, 400
+
         mesa = MesaModel(number, nmb_places, status)
         try:
             mesa.save_to_db()
@@ -31,6 +31,6 @@ class Mesa(Resource):
 
         return mesa.json(), 201
 
-class MesaCountDisponible(Resource):
-    def get(self):
-        return {'mesas': [{'nmb_places': mesa.nmb_places, 'number_disponible': mesa.Disponible} for mesa in MesaModel.count_disponible()]}
+#class MesaCountDisponible(Resource):
+    #def get(self):
+        #return {'mesas': [{'nmb_places': mesa.nmb_places, 'number_disponible': mesa.Disponible} for mesa in MesaModel.count_disponible()]}

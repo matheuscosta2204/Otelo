@@ -24,13 +24,13 @@ class MesaModel(db.Model):
     def find_by_number(cls, number):
         return cls.query.filter_by(number=number).first()
 
-    @classmethod
-    def count_disponible(cls):
-        return db.session.query(
-        MesaModel.number,
-        MesaModel.num_places,
-        select([func.count(MesaModel.number)]).select_from(MesaModel).filter(MesaModel.status != "reservado").group_by(MesaModel.number).label("Disponible")
-        func.count(number)
-        ).select_from(
-        MesaModel
-        ). order_by(nbm_places)
+    #@classmethod
+    #def count_disponible(cls):
+    #    return db.session.query(
+    #    MesaModel.number,
+    #    MesaModel.num_places,
+    #    select([func.count(MesaModel.number)]).select_from(MesaModel).filter(MesaModel.status != "reservado").group_by(MesaModel.number).label("Disponible")
+    #    func.count(number)
+    #    ).select_from(
+    #    MesaModel
+    #    ). order_by(nbm_places)
