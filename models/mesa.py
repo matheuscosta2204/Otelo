@@ -1,4 +1,5 @@
 from db import db
+from SQLAlchemy import func
 
 class MesaModel(db.Model):
     __tablename__ = 'mesas'

@@ -5,10 +5,11 @@ from flask_restful import Api
 from flask_jwt import JWT
 
 from resources.user import UserRegister
-from resources.mesa import Mesa
+from resources.mesa import Mesa, MesaDisponible
 from security import authenticate, identity
 
 app = Flask(__name__)
+app.config['DEBUG'] = True
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL','sqlite:///data.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = 'EiEi0'
@@ -23,4 +24,10 @@ api.add_resource(Mesa, '/mesa/<int:number>')
 if __name__ == '__main__':
     from db import db
     db.init_app(app)
-    app.run(port=5000, debug=True)
+
+    if app.config['DEBUG']:
+        @app.before_first_request
+        def create_tables():
+            db.create_all()
+
+    app.run(port=5000)
