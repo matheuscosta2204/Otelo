@@ -20,13 +20,12 @@ class Mesa(Resource):
         help="This field cannot be blank"
     )
 
-    def post(self):
+    def post(self, number):
         if MesaModel.find_by_number(number):
             return {'message': "A table with name '{}' already exists.".format(number)}, 400
-        return 'ola'
         data = Mesa.parser.parse_args()
 
-        mesa = MesaModel(**data)
+        mesa = MesaModel(data['number'], data['nmb_places'], data['status'])
         try:
             mesa.save_to_db()
         except:
