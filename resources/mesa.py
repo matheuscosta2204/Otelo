@@ -33,6 +33,6 @@ class Mesa(Resource):
 
         return mesa.json(), 201
 
-#class MesaCountDisponible(Resource):
-    #def get(self):
-        #return {'mesas': [{'nmb_places': mesa.nmb_places, 'number_disponible': mesa.Disponible} for mesa in MesaModel.count_disponible()]}
+class MesaCountDisponible(Resource):
+    def get(self):
+        return {'mesas': [{'nmb_places': mesa.nmb_places, 'number_disponible': mesa.Disponible} for mesa in MesaModel.count_disponible()]}
