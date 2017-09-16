@@ -9,7 +9,7 @@ from resources.mesa import Mesa, MesaDisponible
 from security import authenticate, identity
 
 app = Flask(__name__)
-app.config['DEBUG'] = True
+app.config['DEBUG'] = False
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL','sqlite:///data.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = 'EiEi0'
