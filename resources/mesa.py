@@ -35,4 +35,5 @@ class Mesa(Resource):
 
 class MesaDisponible(Resource):
     def get(self):
-        return {'mesas': [{'nmb_places': mesa.nmb_places, 'number_disponible': mesa.Disponible} for mesa in MesaModel.count_disponible()]}
+        return{'mesas': [mesa.json() for mesa in MesaModel.find_all_mesas()]}
+        #return json

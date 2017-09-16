@@ -19,7 +19,7 @@ jwt = JWT(app, authenticate, identity) # /auth
 
 api.add_resource(UserRegister, '/register')
 api.add_resource(Mesa, '/mesa/<int:number>')
-#api.add_resource(MesaCountDisponible, '/mesas_disponiveis')
+api.add_resource(MesaCountDisponible, '/mesas_disponiveis')
 
 if __name__ == '__main__':
     from db import db
