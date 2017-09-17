@@ -4,12 +4,12 @@ from flask import Flask
 from flask_restful import Api
 from flask_jwt import JWT
 
+from security import authenticate, identity
 from resources.user import UserRegister
 from resources.mesa import Mesa, MesaDisponible
-from security import authenticate, identity
 
 app = Flask(__name__)
-app.config['DEBUG'] = False
+app.config['DEBUG'] = True
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL','sqlite:///data.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = 'EiEi0'
@@ -19,7 +19,7 @@ jwt = JWT(app, authenticate, identity) # /auth
 
 api.add_resource(UserRegister, '/register')
 api.add_resource(Mesa, '/mesa/<int:number>')
-api.add_resource(MesaCountDisponible, '/mesas_disponiveis')
+api.add_resource(MesaDisponible, '/mesas')
 
 if __name__ == '__main__':
     from db import db

@@ -1,5 +1,4 @@
 from db import db
-from SQLAlchemy import func
 
 class MesaModel(db.Model):
     __tablename__ = 'mesas'
@@ -21,9 +20,20 @@ class MesaModel(db.Model):
         db.session.add(self)
         db.session.commit()
 
+    def update_to_db(self):
+        db.session.delete(self)
+        db.session.add(self)
+        db.session.commit()
+
+    def delete_from_db(self):
+        db.session.delete(self)
+        db.session.commit()
+
     @classmethod
     def find_by_number(cls, number):
         return cls.query.filter_by(number=number).first()
 
-    def find_all_mesas_disponible():
-        return cls.query.filter_by(staus="livre").all().group_by(number)
+    @classmethod
+    def find_all_mesas_disponible(cls):
+        qry = cls.query.filter_by(status='livre').group_by(MesaModel.nmb_places).all()
+        return {"Mesas": [{'disponible': cls.query.filter_by(nmb_places=mesa.nmb_places).filter_by(status='livre').count(), 'nmb_places': mesa.nmb_places} for mesa in qry]}
