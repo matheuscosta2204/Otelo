@@ -54,5 +54,4 @@ class Mesa(Resource):
 
 class MesaDisponible(Resource):
     def get(self):
-        return 'ola'
-        #return MesaModel.find_all_mesas_disponible()
+        return MesaModel.find_all_mesas_disponible()
