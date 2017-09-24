@@ -35,6 +35,6 @@ class MesaModel(db.Model):
 
     @classmethod
     def find_all_mesas_disponible(cls):
-        qry = cls.query(MesaModel.nmb_places)filter_by(MesaModel.status='livre').group_by(MesaModel.nmb_places).all()
+        qry = cls.query(MesaModel.nmb_places).group_by(MesaModel.nmb_places).all()
         #qry = cls.query.filter_by(status='livre').all()
-        return {"Mesas": [{'disponible': cls.query.filter_by(nmb_places=mesa.nmb_places).count(), 'nmb_places': mesa.nmb_places} for mesa in qry]}
+        return {"Mesas": [{'disponible': cls.query.filter_by(status='livre').filter_by(nmb_places=mesa.nmb_places).count(), 'nmb_places': mesa.nmb_places} for mesa in qry]}
