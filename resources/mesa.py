@@ -46,7 +46,7 @@ class Mesa(Resource):
     def delete(self, number):
         item = MesaModel.find_by_number(number)
         if not item:
-            return {'message': "A table with number '{}'".format(number)}, 404
+            return {'message': "A table with number '{}' does not exists".format(number)}, 404
 
         item.delete_from_db()
 
@@ -54,4 +54,5 @@ class Mesa(Resource):
 
 class MesaDisponible(Resource):
     def get(self):
-        return MesaModel.find_all_mesas_disponible()
+        return 'ola'
+        #return MesaModel.find_all_mesas_disponible()
