@@ -1,4 +1,5 @@
 from db import db
+from flask_jwt import jwt_required
 
 class MesaModel(db.Model):
     __tablename__ = 'mesas'
@@ -33,6 +34,7 @@ class MesaModel(db.Model):
     def find_by_number(cls, number):
         return cls.query.filter_by(number=number).first()
 
+    @jwt_required()
     @classmethod
     def find_all_mesas_disponible(cls):
         qry = cls.query.filter_by(status='livre').all()
